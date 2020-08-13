@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Breed API Generator</title>
     <link href="style.css" rel="stylesheet" type="style.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
-    <h1>Choose You're Dog Breed!</h1>
+    <div class="container">
+        <h1>Choose You're Dog Breed!</h1>
 
-    <div>
-        <h3>What breed of dog are you interested in seeing?</h3>
-        <input id="dogBreed"></input>
-        <button>Release the hounds!</button>
+    <form>
+        <input id="userInput" type="text" value="Hound">
+        <input type="submit" value="Release the Hounds!">
+    </form>>
+        <section class="results"></section>
     </div>
 
-    <div id="dogs-here"></div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
