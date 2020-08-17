@@ -1,45 +1,41 @@
 'use strict';
 
+function getDogImage( inputBreed )  {
+  const url = `https://dog.ceo/api/breed/${inputBreed}/images/random`;
 
-function getDogImage(breed) {
-  fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then(response => validateResponse(response))
-    //.then(response => response.json())
-    .then(responseJson => displayResults(responseJson))
-    .catch(errorMessage);
+  fetch( url )
+    .then( response => {
+      if ( response.ok ) { 
+        return response.json()
+      }
+      throw new Error( 'This breed was not found. Please try checking your spelling and try again.' );
+    })
+    .then( responseJson => {
+      $( '.error' ).empty();
+      displayResults( responseJson );
+    })
+    .catch( error => {
+      $( '.error' ).text( `Something went wrong: ${error.message}` );
+      $( '.results-img' ).empty();
+    })
 }
 
-function displayResults(responseJson) {
-  console.log(responseJson.message);
-  $('.results').append(
-    `<img src="${responseJson.message}" class="results-img">`
-  )
-}
-
-function validateResponse(response) {
-  if (!response.ok) {
-    throw Error();
-  }
-  return response.json();
+function displayResults( responseJson ) {
+  console.log( responseJson );
+  $( '#results-list' ).empty();
+  $( '.results-img' ).html(`<img src="${responseJson.message}" class="results-img">`);
+  $( '.results' ).removeClass( 'hidden' );
 }
 
 function watchForm() {
-  $('form').submit(event => {
+  $( 'form' ).submit( event => {
     event.preventDefault();
-    $(".results").empty();
-  let breed = $("#userInput").val();
-    getDogImage(breed);
+    let inputBreed = $( '#name' ).val();
+    getDogImage( inputBreed );
   });
 }
 
-function errorMessage(message){
-  $('.results').append(`<p>Breed not found!<br>
-  Make sure your input is lowercase and check your spelling</p>`);
-}
-
-
 $(function() {
-  console.log('App loaded! Waiting for submit!');
+  console.log( 'App loaded! Waiting for submit!' );
   watchForm();
 });
-
