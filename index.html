@@ -9,14 +9,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Choose You're Dog Breed!</h1>
-
-    <form>
-        <input id="userInput" type="text" value="Hound">
-        <input type="submit" value="Release the Hounds!">
-    </form>>
-        <section class="results"></section>
-    </div>
+        <h1>Dog API: Select Random Breed</h1>
+        <form>
+          <div class="results-form">
+            <label for="name">Enter a breed</label>
+            <input type="text" name="name" id="name" value="hound" required>
+            <input type="submit" value="Display Breed!">
+          </div>
+        </form>
+        <section class="results hidden">
+          <div class="results-img" alt="placeholder"></div>
+          <p class="error"></p>
+        </section>
+      </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
